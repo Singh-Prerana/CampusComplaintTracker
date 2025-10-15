@@ -16,9 +16,9 @@
 
 // src/api/axios.js
 import axios from "axios";
-
+import.meta.env.VITE_API_BASE_URL
 const API = axios.create({
-  baseURL: "http://localhost:5000/api",
+  baseURL: import.meta.env.VITE_API_BASE_URL,
   withCredentials: true,
 });
 
@@ -45,7 +45,7 @@ API.interceptors.response.use(
         if (!refreshToken) throw new Error("No refresh token");
 
         const { data } = await axios.post(
-          "http://localhost:5000/api/auth/refresh",
+          `${import.meta.env.VITE_API_BASE_URL }/auth/refresh`,
           { refreshToken }
         );
 
